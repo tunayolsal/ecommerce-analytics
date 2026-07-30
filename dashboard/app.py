@@ -85,7 +85,7 @@ st.markdown(
     RFM customer segmentation, cohort retention, delivery performance, and payment behavior.
     Built with DuckDB (ETL/analysis), Streamlit, and Plotly.
 
-    **GitHub:** `<add repo link here>`
+    **GitHub:** `https://github.com/tunayolsal/ecommerce-analytics`
 
     Use the sidebar to navigate between pages: **Sales Overview**, **Customer Segments**,
     **Delivery and Reviews**, and **Payments**.
