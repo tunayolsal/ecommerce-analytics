@@ -16,3 +16,4 @@ venv/
 # OS / editor
 .DS_Store
 Thumbs.db
+data/olist.duckdb
