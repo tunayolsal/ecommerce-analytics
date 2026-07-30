@@ -2,7 +2,7 @@
 
 A full data-analyst pipeline on 100k real Brazilian e-commerce orders — Python ETL, SQL analysis in DuckDB, hypothesis testing, and an interactive Streamlit dashboard.
 
-**Live dashboard:** _coming soon_
+**Live dashboard:** https://ecommerce-analytics-tunayolsal.streamlit.app
 
 ---
 
