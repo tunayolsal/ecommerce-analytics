@@ -126,9 +126,22 @@ def transform_all(raw: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     """
     cleaned: dict[str, pd.DataFrame] = {}
 
-    cleaned["product_category_translation"] = transform_generic(
+    translation = transform_generic(
         raw["product_category_translation"], "product_category_translation"
     )
+    # The source translation file is incomplete (e.g. 'pc_gamer'); add the missing
+    # categories with the Portuguese name as fallback so the products FK holds.
+    product_cats = raw["products"]["product_category_name"].dropna().str.strip().unique()
+    missing = sorted(set(product_cats) - set(translation["product_category_name"]))
+    if missing:
+        translation = pd.concat(
+            [translation, pd.DataFrame({
+                "product_category_name": missing,
+                "product_category_name_english": missing,
+            })],
+            ignore_index=True,
+        )
+    cleaned["product_category_translation"] = translation
     cleaned["products"] = transform_products(raw["products"], cleaned["product_category_translation"])
     cleaned["customers"] = transform_generic(raw["customers"], "customers")
     cleaned["sellers"] = transform_generic(raw["sellers"], "sellers")

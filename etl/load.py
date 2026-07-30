@@ -58,7 +58,7 @@ def load_all(cleaned: dict[str, pd.DataFrame], db_path: Path = DB_PATH) -> duckd
     for table_name in TABLE_LOAD_ORDER:
         df = cleaned[table_name]
         con.register("tmp_df", df)
-        con.execute(f"INSERT INTO {table_name} SELECT * FROM tmp_df")
+        con.execute(f"INSERT INTO {table_name} BY NAME SELECT * FROM tmp_df")
         con.unregister("tmp_df")
         logger.info("Loaded %-30s %6d rows into '%s'", table_name, len(df), table_name)
 
